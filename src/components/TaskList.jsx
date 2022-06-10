@@ -8,7 +8,6 @@ function TaskList() {
   const [tasks, setTasks] = useState([]);
 
   const addTask = task => {
-    console.log(task);
     task.text = task.text.trim();
     if (task.text) {
       const updatedTasks = [task, ...tasks]
@@ -18,6 +17,18 @@ function TaskList() {
 
   const deleteTask = id => {
     const updatedTasks = tasks.filter(task => task.id != id);
+    setTasks(updatedTasks);
+  };
+
+  const completeTask = id => {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === id) {
+        task.completed = !task.completed;
+      }
+
+      return task;
+    });
+
     setTasks(updatedTasks);
   };
   
@@ -30,8 +41,9 @@ function TaskList() {
             <Task
               key={task.id}
               id={task.id}
-              text={task.text} 
+              text={task.text}
               isCompleted={task.completed}
+              completeTask={completeTask}
               deleteTask={deleteTask} />
           )
         }

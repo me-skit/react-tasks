@@ -15,6 +15,11 @@ function TaskList() {
       setTasks(updatedTasks);
     }
   };
+
+  const deleteTask = id => {
+    const updatedTasks = tasks.filter(task => task.id != id);
+    setTasks(updatedTasks);
+  };
   
   return (
     <>
@@ -27,7 +32,7 @@ function TaskList() {
               id={task.id}
               text={task.text} 
               isCompleted={task.completed}
-            />
+              deleteTask={deleteTask} />
           )
         }
       </div>

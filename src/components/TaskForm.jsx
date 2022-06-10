@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function TaskForm(props) {
 
-  const [input, setInput] =useState('');
+  const [input, setInput]=useState('');
 
   const handleChange = event => {
     setInput(event.target.value);
@@ -20,7 +20,8 @@ function TaskForm(props) {
     }
 
     props.onSubmit(newTask);
-  }
+    event.target.firstChild.value = '';
+  };
 
   return (
     <form
